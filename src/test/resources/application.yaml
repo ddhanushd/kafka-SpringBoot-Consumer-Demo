@@ -1,7 +1,9 @@
 spring:
   kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
-      bootstrap-servers: localhost:9092
       group-id: group-new
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -11,5 +13,3 @@ spring:
         spring.json.use.type.headers: false
         spring.json.value.default.type: com.kafka.kafkaconsumerexample.dto.Customer
 
-server:
-  port: 8081
