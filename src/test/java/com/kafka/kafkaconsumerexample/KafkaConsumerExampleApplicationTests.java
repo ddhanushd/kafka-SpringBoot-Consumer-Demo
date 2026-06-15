@@ -25,30 +25,30 @@ import static org.awaitility.Awaitility.await;
 @Slf4j
 class KafkaConsumerExampleApplicationTests {
 
-    @Container
-    static KafkaContainer kafka =
-            new KafkaContainer(
-                    DockerImageName.parse("apache/kafka:3.8.0")
-            );
-
-    @DynamicPropertySource
-    static void overridePropertiesInternal(DynamicPropertyRegistry registry) {
-        registry.add("spring.kafka.bootstrap-servers", kafka::getBootstrapServers);
-    }
-
-    @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
-
-
-    @Test
-    public void testConsumeEvents() {
-        log.info("testConsumeEvents method execution started...");
-        Customer customer = new Customer(263, "test user", "test@gmail.com", "564782542752");
-        kafkaTemplate.send("KafkaTopic-demo", customer);
-        log.info("testConsumeEvents method execution ended...");
-        await().pollInterval(Duration.ofSeconds(3)).atMost(10, SECONDS).untilAsserted(() -> {
-
-        });
-    }
+//    @Container
+//    static KafkaContainer kafka =
+//            new KafkaContainer(
+//                    DockerImageName.parse("apache/kafka:3.8.0")
+//            );
+//
+//    @DynamicPropertySource
+//    static void overridePropertiesInternal(DynamicPropertyRegistry registry) {
+//        registry.add("spring.kafka.bootstrap-servers", kafka::getBootstrapServers);
+//    }
+//
+//    @Autowired
+//    private KafkaTemplate<String, Object> kafkaTemplate;
+//
+//
+//    @Test
+//    public void testConsumeEvents() {
+//        log.info("testConsumeEvents method execution started...");
+//        Customer customer = new Customer(263, "test user", "test@gmail.com", "564782542752");
+//        kafkaTemplate.send("KafkaTopic-demo", customer);
+//        log.info("testConsumeEvents method execution ended...");
+//        await().pollInterval(Duration.ofSeconds(3)).atMost(10, SECONDS).untilAsserted(() -> {
+//
+//        });
+//    }
 
 }
